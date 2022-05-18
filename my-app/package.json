@@ -25,6 +25,7 @@
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "react-toastify": "^9.0.1",
     "styled-components": "^5.3.5",
     "typescript": "^4.6.4",
     "web-vitals": "^2.1.4"
@@ -48,7 +49,9 @@
     ]
   },
   "prettier": {
-    "printWidth": 100
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 120
   },
   "browserslist": {
     "production": [

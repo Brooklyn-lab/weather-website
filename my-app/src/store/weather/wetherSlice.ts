@@ -1,21 +1,29 @@
-import { WeatherInitialState } from "./types";
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { api, AppState } from "../store";
+import { WeatherInitialState } from './types'
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { CityWeather } from '../../types/weather'
 
-const initialState: WeatherInitialState = {};
-
-export const fetchWeather = createAsyncThunk("weather/fetchWeather", async (_, thunkAPI) => {
-  const state = thunkAPI.getState() as AppState;
-  const cityName = "Boston";
-  // const {data} = await api.get(`lat=${33.44}&lon=${-94.04}&exclude=hourly,daily&appid=${process.env.API_KEY}`);
-  const { data } = await api.get(`q=${cityName}&exclude=hourly,daily&appid=${process.env.API_KEY}`);
-  return data;
-});
+const initialState: WeatherInitialState = {
+  cityNames: ['Kyiv', 'Budapest', 'Berlin', 'Prague', 'Warsaw', 'Amsterdam'],
+  cities: [],
+  loading: false,
+}
 
 export const weatherSlice = createSlice({
-  name: "weather",
+  name: 'weather',
   initialState,
-  reducers: {},
-});
+  reducers: {
+    getWeather: (state, action: PayloadAction<CityWeather>) => {
+      state.cities.push(action.payload)
+      state.loading = true
+    },
+    deleteCity: (state, action: PayloadAction<number>) => {
+      state.cities = state.cities.filter((city) => city.id !== action.payload)
+    },
+    updateWeather: (state, action: PayloadAction<CityWeather>) => {
+      // const city = state.cities.find((city) => city.id === action.payload.id)
+      // state.cities = city ? city : null
+    },
+  },
+})
 
-export const {} = weatherSlice.actions;
+export const { getWeather, deleteCity, updateWeather } = weatherSlice.actions
