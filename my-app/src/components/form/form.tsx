@@ -1,43 +1,71 @@
-import { SubmitHandler, useForm } from "react-hook-form";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
+import { useForm } from 'react-hook-form'
+import { useAppDispatch, useAppSelector } from '../../store/store'
+import { searchCity } from '../../store/weather/api-actions'
+import { toast } from 'react-toastify'
+
+import TextField from '@mui/material/TextField'
+import Button from '@mui/material/Button'
+
+import './form.scss'
 
 type FormData = {
-  location: string;
-};
+  location: string
+}
 
 function Form(): JSX.Element {
+  const dispatch = useAppDispatch()
+  const { cities } = useAppSelector(({ weather }) => weather)
+
   const {
     register,
-    setValue,
     formState: { errors, isValid },
     handleSubmit,
+    reset,
   } = useForm<FormData>({
-    mode: "onChange",
-  });
+    mode: 'onChange',
+  })
 
-  const onSubmit = handleSubmit((data) => console.log(data));
+  const onSubmit = handleSubmit((data) => {
+    const isMatches = cities.find((city) => city.name.toLowerCase() === data.location.toLowerCase())
+
+    if (!isMatches) {
+      dispatch(searchCity(data.location))
+      reset()
+    } else {
+      toast('This city has already been shown')
+    }
+  })
 
   return (
     <form className="form" onSubmit={onSubmit}>
       <TextField
-        id="outlined-basic"
+        className="form__input"
+        id="standard-basic"
         label="Enter location"
-        variant="outlined"
-        {...register("location", {
-          required: "Required field",
+        autoComplete="off"
+        variant="standard"
+        {...register('location', {
+          required: 'Required field',
           minLength: {
             value: 1,
-            message: "Please enter at least one character",
+            message: 'Please enter at least one character',
           },
         })}
       />
-      <div>{errors?.location && <p>{errors?.location?.message || "Error!"}</p>}</div>
-      <Button type="submit" disabled={!isValid}>
-        Click
+      <div>{errors?.location && <p>{errors?.location?.message || 'Error!'}</p>}</div>
+      <Button
+        sx={{
+          ml: '20px',
+        }}
+        variant="outlined"
+        type="submit"
+        disabled={!isValid}
+        className="form__button"
+      >
+        Search
       </Button>
     </form>
-  );
+  )
 }
 
-export default Form;
+export default Form

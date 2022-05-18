@@ -1,13 +1,14 @@
-import { Outlet } from "react-router-dom";
+import { Outlet } from 'react-router-dom'
+import { Container } from '@mui/material'
 
 function Layout(): JSX.Element {
   return (
     <div className="wrapper">
-      <main>
+      <Container>
         <Outlet />
-      </main>
+      </Container>
     </div>
-  );
+  )
 }
 
-export default Layout;
+export default Layout

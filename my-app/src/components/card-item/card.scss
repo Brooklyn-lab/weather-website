@@ -1,0 +1,96 @@
+.card {
+  padding: 0 20px 20px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(14px);
+  border-radius: 10px;
+  color: #ffffff;
+
+  &__image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__city {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+    text-transform: uppercase;
+  }
+
+  &__temp-wrapper {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  &__temp {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  &__rainfall {
+    margin-left: 11px;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 17px;
+    position: relative;
+    text-transform: uppercase;
+
+    &::after {
+      position: absolute;
+      content: '';
+      background: rgba(255, 255, 255, 0.2);
+      height: 11px;
+      width: 1px;
+      left: -5px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  &__about {
+    margin-top: 19px;
+  }
+
+  &__about-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    gap: 0 10px;
+
+    &:not(:last-child) {
+      margin-bottom: 7px;
+    }
+  }
+
+  &__about-col {
+    &:last-child {
+      text-align: right;
+    }
+  }
+
+  &__buttons-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 36px;
+  }
+
+  &__button-more {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 15px;
+    cursor: pointer;
+  }
+
+  &__button {
+    cursor: pointer;
+
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+}
