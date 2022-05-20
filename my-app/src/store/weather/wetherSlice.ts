@@ -45,6 +45,9 @@ export const weatherSlice = createSlice({
     getCurrentCity: (state, action: PayloadAction<CityWeather>) => {
       state.currentCity = action.payload
     },
+    resetCities: (state) => {
+      state.cities = []
+    },
   },
 })
 
@@ -56,4 +59,5 @@ export const {
   updateWeather,
   getSelectCityName,
   getCurrentCity,
+  resetCities,
 } = weatherSlice.actions
