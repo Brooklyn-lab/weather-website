@@ -1,3 +1,33 @@
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 300;
+  src: url(assets/fonts/Montserrat-Light.ttf);
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  src: url(assets/fonts/Montserrat-Regular.ttf);
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  src: url(assets/fonts/Montserrat-Medium.ttf);
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  src: url(assets/fonts/Montserrat-SemiBold.ttf);
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  src: url(assets/fonts/Montserrat-Bold.ttf);
+}
 *,
 *::before,
 *::after {
@@ -7,7 +37,7 @@
   box-sizing: border-box;
 }
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   line-height: 1.5;
   min-height: 100vh;
   display: flex;
@@ -15,7 +45,7 @@ body {
   color: #222222;
   scroll-behavior: smooth;
   z-index: 1;
-  background: #FFFFFF;
+  background: #ffffff;
 }
 ul,
 ol,
@@ -52,13 +82,7 @@ img {
   height: auto;
 }
 .wrapper {
-  background: #61dafb;
-  height: 100vh;
+  background: url('./assets/images/priroda-peizazh.jpg') no-repeat center/cover;
+  height: 100%;
   padding: 50px 0;
-}
-.container {
-  max-width: 1230px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 15px;
 }
