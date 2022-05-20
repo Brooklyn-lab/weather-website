@@ -83,6 +83,6 @@ img {
 }
 .wrapper {
   background: url('./assets/images/priroda-peizazh.jpg') no-repeat center/cover;
-  height: 100%;
+  min-height: 100vh;
   padding: 50px 0;
 }

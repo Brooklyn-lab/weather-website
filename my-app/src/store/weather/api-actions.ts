@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { AppDispatch, AppState } from '../store'
 import { AxiosInstance } from 'axios'
-import { addToLocalStorage, getWeather, updateWeather } from './wetherSlice'
+import { addToLocalStorage, getCurrentCity, getWeather, updateWeather } from './wetherSlice'
 import { CityWeather } from '../../types/weather'
 import { errorHandle } from '../../utils/error-handle'
 
@@ -34,7 +34,7 @@ export const searchCity = createAsyncThunk<
     state: AppState
     extra: AxiosInstance
   }
->('data/fetchWeather', async (city, { dispatch, extra: api }) => {
+>('data/searchCity', async (city, { dispatch, extra: api }) => {
   try {
     const { data } = await api.get<CityWeather>('/weather', {
       params: {
@@ -56,7 +56,7 @@ export const updateWeatherAction = createAsyncThunk<
     state: AppState
     extra: AxiosInstance
   }
->('data/fetchWeather', async (city, { dispatch, extra: api }) => {
+>('data/updateWeather', async (city, { dispatch, extra: api }) => {
   try {
     const { data } = await api.get<CityWeather>('/weather', {
       params: {
@@ -64,6 +64,28 @@ export const updateWeatherAction = createAsyncThunk<
       },
     })
     dispatch(updateWeather(data))
+  } catch (error) {
+    errorHandle(error)
+  }
+})
+
+export const getCurrentCityAction = createAsyncThunk<
+  void,
+  string,
+  {
+    dispatch: AppDispatch
+    state: AppState
+    extra: AxiosInstance
+  }
+>('data/getCurrentCity', async (city, { dispatch, extra: api }) => {
+  try {
+    const { data } = await api.get<CityWeather>('/weather', {
+      params: {
+        q: city,
+      },
+    })
+
+    dispatch(getCurrentCity(data))
   } catch (error) {
     errorHandle(error)
   }

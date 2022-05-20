@@ -1,14 +1,15 @@
+import { generatePath, Link } from 'react-router-dom'
 import { useAppDispatch } from '../../store/store'
-import { deleteCity } from '../../store/weather/wetherSlice'
+import { deleteCity, getSelectCityName } from '../../store/weather/wetherSlice'
 
 import { CityWeather } from '../../types/weather'
 
 import DeleteIcon from '@mui/icons-material/Delete'
 import UpdateIcon from '@mui/icons-material/Update'
 
-import { updateWeatherAction } from '../../store/weather/api-actions'
-
 import './card.scss'
+import { ROUTES } from '../../constants'
+import ButtonUpdate from '../button-update/button-update'
 
 type CardItemProps = {
   city: CityWeather
@@ -21,8 +22,8 @@ function CardItem({ city }: CardItemProps): JSX.Element {
     dispatch(deleteCity(city.id))
   }
 
-  const updateCardHandler = () => {
-    dispatch(updateWeatherAction(city.name))
+  const selectCityNameHandler = () => {
+    dispatch(getSelectCityName(city.name))
   }
 
   return (
@@ -55,11 +56,15 @@ function CardItem({ city }: CardItemProps): JSX.Element {
         </div>
       </div>
       <div className="card__buttons-wrapper">
-        <p className="card__button-more" onClick={() => console.log('Show More')}>
+        <Link
+          className="card__button-more"
+          to={generatePath(ROUTES.City, { id: String(city.id) })}
+          onClick={selectCityNameHandler}
+        >
           Show More
-        </p>
-        <div>
-          <UpdateIcon fontSize="small" color="inherit" onClick={updateCardHandler} className="card__button" />
+        </Link>
+        <div className="card__buttons">
+          <ButtonUpdate cityName={city.name} />
           <DeleteIcon fontSize="small" color="inherit" onClick={deleteCardHandler} className="card__button" />
         </div>
       </div>

@@ -1,0 +1,132 @@
+.weather {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(14px);
+  border-radius: 10px;
+  padding: 65px 20px 95px;
+  color: #ffffff;
+
+  @media screen and (max-width: 992px) {
+    padding: 0 30px 50px;
+  }
+
+  &__wrapper {
+    max-width: 750px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr auto auto;
+    gap: 50px 50px;
+    grid-template-areas:
+      'image-wrapper city-name'
+      '. .'
+      '. .';
+
+    @media screen and (max-width: 768px) {
+      gap: 50px 0;
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      grid-template-areas:
+        'image-wrapper'
+        'city-name'
+        '.';
+    }
+  }
+
+  &__image-wrapper {
+    grid-area: image-wrapper;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__temp-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__temp {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+  }
+
+  &__rainfall {
+    margin-left: 11px;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 21px;
+    position: relative;
+    text-transform: uppercase;
+
+    &::after {
+      position: absolute;
+      content: '';
+      background: rgba(255, 255, 255, 0.2);
+      height: 11px;
+      width: 1px;
+      left: -5px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  &__title {
+    grid-area: city-name;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__name {
+    font-weight: 600;
+    font-size: 64px;
+    line-height: 78px;
+
+    @media screen and (max-width: 768px) {
+      font-size: 52px;
+      line-height: 68px;
+    }
+
+    @media screen and (max-width: 576px) {
+      font-size: 39px;
+      line-height: 52px;
+    }
+  }
+
+  &__about-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px 100px;
+
+    &:not(:last-child) {
+      margin-bottom: 25px;
+
+      @media screen and (max-width: 992px) {
+        margin-bottom: 15px;
+      }
+    }
+
+    @media screen and (max-width: 992px) {
+      gap: 15px 50px;
+    }
+
+    @media screen and (max-width: 768px) {
+      gap: 15px 25px;
+      text-align: center;
+    }
+  }
+
+  &__about-col {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 21px;
+
+    &:last-child {
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 21px;
+    }
+  }
+}

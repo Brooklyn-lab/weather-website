@@ -84,13 +84,17 @@
     font-size: 13px;
     line-height: 15px;
     cursor: pointer;
+    color: #ffffff;
   }
 
   &__button {
     cursor: pointer;
+    margin-left: 10px;
+  }
 
-    &:not(:last-child) {
-      margin-right: 10px;
-    }
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

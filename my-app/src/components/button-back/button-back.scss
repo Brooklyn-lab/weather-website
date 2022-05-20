@@ -1,0 +1,22 @@
+.button-back {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+
+  &__text {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 120%;
+    color: #ffffff;
+    padding-left: 48px;
+    cursor: pointer;
+    z-index: 1;
+    display: inline-block;
+  }
+
+  &__icon {
+    position: absolute;
+    left: 0;
+  }
+}

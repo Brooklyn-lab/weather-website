@@ -1,11 +1,14 @@
 import { WeatherInitialState } from './types'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { CityWeather } from '../../types/weather'
+import { saveCityName } from '../../utils/selected-city'
 
 const initialState: WeatherInitialState = {
   cityNames: ['Kyiv', 'Budapest', 'Berlin', 'Prague', 'Warsaw', 'Amsterdam'],
   cities: [],
   loading: false,
+  selectCityName: '',
+  currentCity: null,
 }
 export const weatherSlice = createSlice({
   name: 'weather',
@@ -35,7 +38,22 @@ export const weatherSlice = createSlice({
     updateWeather: (state, action: PayloadAction<CityWeather>) => {
       state.cities = state.cities.map((city) => (city.id === action.payload.id ? action.payload : city))
     },
+    getSelectCityName: (state, action: PayloadAction<string>) => {
+      state.selectCityName = action.payload
+      saveCityName(action.payload)
+    },
+    getCurrentCity: (state, action: PayloadAction<CityWeather>) => {
+      state.currentCity = action.payload
+    },
   },
 })
 
-export const { addToLocalStorage, getFromLocalStorage, getWeather, deleteCity, updateWeather } = weatherSlice.actions
+export const {
+  addToLocalStorage,
+  getFromLocalStorage,
+  getWeather,
+  deleteCity,
+  updateWeather,
+  getSelectCityName,
+  getCurrentCity,
+} = weatherSlice.actions

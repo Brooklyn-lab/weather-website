@@ -1,0 +1,21 @@
+.button-update {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+
+  &__text {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 120%;
+    color: #ffffff;
+    padding-right: 48px;
+    cursor: pointer;
+    z-index: 1;
+    display: inline-block;
+  }
+
+  &__icon {
+    cursor: pointer;
+  }
+}

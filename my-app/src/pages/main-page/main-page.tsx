@@ -15,8 +15,8 @@ function MainPage(): JSX.Element {
 
   useEffect(() => {
     if (cityNames) {
-      cityNames.map((city: string) => {
-        dispatch(fetchWeather(city))
+      cityNames.map((cityName: string) => {
+        dispatch(fetchWeather(cityName))
       })
     }
   }, [dispatch, cityNames])

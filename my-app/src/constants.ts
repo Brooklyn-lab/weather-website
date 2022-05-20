@@ -1,6 +1,6 @@
 export enum ROUTES {
   Main = '/',
-  City = '/city',
+  City = '/city/:id',
 }
 
 export enum HttpCode {
