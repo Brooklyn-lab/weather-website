@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { ROUTES } from "../../constants";
+import { Link } from 'react-router-dom'
+import { ROUTES } from '../../constants'
 
 function ErrorPage(): JSX.Element {
   return (
@@ -8,7 +8,7 @@ function ErrorPage(): JSX.Element {
       <br />
       <Link to={ROUTES.Main}>Go Home</Link>
     </>
-  );
+  )
 }
 
-export default ErrorPage;
+export default ErrorPage
