@@ -52,6 +52,7 @@ export const weatherSlice = createSlice({
     },
     resetCities: (state) => {
       state.cities = []
+      state.currentCity = null
     },
     hourlyWeather: (state, action: PayloadAction<HourlyWeather>) => {
       state.hourlyWeather = action.payload

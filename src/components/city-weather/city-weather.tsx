@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../store/store'
 import { fetchHourlyWeather, getCurrentCityAction } from '../../store/weather/api-actions'
 import { format } from 'date-fns'
@@ -10,17 +10,10 @@ import './city-weather.scss'
 
 function CityWeather(): JSX.Element {
   const dispatch = useAppDispatch()
-  const { selectCityName, currentCity } = useAppSelector(({ weather }) => weather)
-  const [cityName, setCityName] = useState<string>('')
+  const { currentCity } = useAppSelector(({ weather }) => weather)
 
   useEffect(() => {
-    setCityName(getCityName())
-    if (selectCityName) {
-      dispatch(getCurrentCityAction(selectCityName))
-      setCityName(selectCityName)
-    } else if (cityName) {
-      dispatch(getCurrentCityAction(cityName))
-    }
+    dispatch(getCurrentCityAction(getCityName()))
   }, [])
 
   useEffect(() => {
@@ -32,7 +25,7 @@ function CityWeather(): JSX.Element {
         })
       )
     }
-  }, [])
+  }, [currentCity])
 
   return (
     <>
@@ -40,7 +33,7 @@ function CityWeather(): JSX.Element {
         <Loader />
       ) : (
         <>
-          <Navigate cityName={cityName} coord={currentCity.coord} />
+          <Navigate cityName={getCityName()} coord={currentCity.coord} />
           <div className="weather">
             <div className="weather__wrapper">
               <div className="weather__image-wrapper">

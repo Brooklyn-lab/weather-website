@@ -14,7 +14,7 @@ function MainPage(): JSX.Element {
     const cities = localStorage.getItem(CITIES)
     const parsedCities = cities ? JSON.parse(cities) : []
 
-    cityNames.concat(parsedCities).forEach((cityName: string) => {
+    Array.from(new Set(cityNames.concat(parsedCities))).forEach((cityName: string) => {
       dispatch(fetchWeather(cityName))
     })
   }, [dispatch, cityNames])

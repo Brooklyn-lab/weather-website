@@ -1,9 +1,9 @@
-const CITI_NAME = 'cityName'
+const CITY_NAME = 'cityName'
 
 export type SelectedCity = string
 
 export const getCityName = (): SelectedCity => {
-  const cityName = localStorage.getItem(CITI_NAME)
+  const cityName = localStorage.getItem(CITY_NAME)
   return cityName ?? ''
 }
 
