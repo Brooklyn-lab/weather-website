@@ -1,18 +1,16 @@
-type Coord = {
+export type Coord = {
   lon: number
   lat: number
 }
 
-type Weather = [
-  {
-    id: number
-    main: string
-    description: string
-    icon: string
-  }
-]
+export type Weather = {
+  id: number
+  main: string
+  description: string
+  icon: string
+}
 
-type Main = {
+export type Main = {
   temp: number
   feels_like: number
   temp_min: number
@@ -21,12 +19,12 @@ type Main = {
   humidity: number
 }
 
-type Wind = {
+export type Wind = {
   speed: number
   deg: number
 }
 
-type Clouds = {
+export type Clouds = {
   all: number
 }
 
@@ -40,7 +38,7 @@ type Sys = {
 
 export type CityWeather = {
   coord: Coord
-  weather: Weather
+  weather: Weather[]
   base: string
   main: Main
   visibility: number

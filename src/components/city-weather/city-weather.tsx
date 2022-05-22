@@ -1,9 +1,12 @@
-import './city-weather.scss'
-import { useAppDispatch, useAppSelector } from '../../store/store'
-import { getCurrentCityAction } from '../../store/weather/api-actions'
 import { useEffect, useState } from 'react'
+import { useAppDispatch, useAppSelector } from '../../store/store'
+import { fetchHourlyWeather, getCurrentCityAction } from '../../store/weather/api-actions'
+import { format } from 'date-fns'
 import { getCityName } from '../../utils/selected-city'
 import Navigate from '../navigate/navigate'
+import HourlyWeather from '../hourly-weather/hourly-weather'
+import Loader from '../loader/loader'
+import './city-weather.scss'
 
 function CityWeather(): JSX.Element {
   const dispatch = useAppDispatch()
@@ -18,15 +21,26 @@ function CityWeather(): JSX.Element {
     } else if (cityName) {
       dispatch(getCurrentCityAction(cityName))
     }
-  }, [dispatch, selectCityName, cityName])
+  }, [])
+
+  useEffect(() => {
+    if (currentCity) {
+      dispatch(
+        fetchHourlyWeather({
+          lon: currentCity.coord.lon,
+          lat: currentCity.coord.lat,
+        })
+      )
+    }
+  }, [])
 
   return (
     <>
       {!currentCity ? (
-        <h1>Loading</h1>
+        <Loader />
       ) : (
         <>
-          <Navigate cityName={cityName} />
+          <Navigate cityName={cityName} coord={currentCity.coord} />
           <div className="weather">
             <div className="weather__wrapper">
               <div className="weather__image-wrapper">
@@ -77,15 +91,16 @@ function CityWeather(): JSX.Element {
               <div className="weather__about-wrapper">
                 <div className="weather__about-row">
                   <p className="weather__about-col">Sunrise</p>
-                  <p className="weather__about-col">{currentCity.sys.sunrise}</p>
+                  <p className="weather__about-col">{format(currentCity.sys.sunrise, 'HH:mm')} a.m.</p>
                 </div>
                 <div className="weather__about-row">
                   <p className="weather__about-col">Sunset</p>
-                  <p className="weather__about-col">{currentCity.sys.sunset}</p>
+                  <p className="weather__about-col">{format(currentCity.sys.sunset, 'HH:mm')} p.m.</p>
                 </div>
               </div>
             </div>
           </div>
+          <HourlyWeather />
         </>
       )}
     </>

@@ -1,15 +1,11 @@
 import { generatePath, Link } from 'react-router-dom'
 import { useAppDispatch } from '../../store/store'
 import { deleteCity, getSelectCityName } from '../../store/weather/wetherSlice'
-
-import { CityWeather } from '../../types/weather'
-
-import DeleteIcon from '@mui/icons-material/Delete'
-import UpdateIcon from '@mui/icons-material/Update'
-
-import './card.scss'
 import { ROUTES } from '../../constants'
+import { CityWeather } from '../../types/weather'
+import DeleteIcon from '@mui/icons-material/Delete'
 import ButtonUpdate from '../button-update/button-update'
+import './card.scss'
 
 type CardItemProps = {
   city: CityWeather
@@ -19,7 +15,7 @@ function CardItem({ city }: CardItemProps): JSX.Element {
   const dispatch = useAppDispatch()
 
   const deleteCardHandler = () => {
-    dispatch(deleteCity(city.id))
+    dispatch(deleteCity(city))
   }
 
   const selectCityNameHandler = () => {

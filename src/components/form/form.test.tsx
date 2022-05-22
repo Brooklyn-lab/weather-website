@@ -1,9 +1,7 @@
 import { Provider } from 'react-redux'
 import { fireEvent, render, screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-import { configureMockStore } from '@jedmao/redux-mock-store'
-
 import Form from './form'
+import { configureMockStore } from '@jedmao/redux-mock-store'
 
 const mockStore = configureMockStore()
 

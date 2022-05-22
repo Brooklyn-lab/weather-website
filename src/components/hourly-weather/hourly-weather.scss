@@ -1,0 +1,63 @@
+.hourly-weather {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  color: #ffffff;
+  margin-top: 25px;
+  padding: 15px 0;
+
+  &__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+
+    &:not(:last-child) {
+      margin-right: 1px;
+    }
+  }
+
+  &__wrapper {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(14px);
+    border-radius: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 15px 0 0;
+  }
+
+  &__temp {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(14px);
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+    margin-top: 3px;
+  }
+
+  &__celsius {
+    @media screen and (max-width: 576px) {
+      display: none;
+    }
+  }
+
+  &__text {
+    font-size: 16px;
+    left: 21px;
+    text-align: center;
+
+    @media screen and (max-width: 768px) {
+      font-size: 14px;
+      left: 18px;
+    }
+
+    @media screen and (max-width: 480px) {
+      font-size: 11px;
+      left: 16px;
+    }
+  }
+}

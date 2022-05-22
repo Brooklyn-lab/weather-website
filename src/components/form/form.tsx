@@ -1,10 +1,10 @@
-import { useForm } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 import { useAppDispatch, useAppSelector } from '../../store/store'
 import { searchCity } from '../../store/weather/api-actions'
 import { toast } from 'react-toastify'
 
-import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
+import { CustomTextField } from '../custom-textfield/custom-textfield'
 
 import './form.scss'
 
@@ -17,50 +17,47 @@ function Form(): JSX.Element {
   const { cities } = useAppSelector(({ weather }) => weather)
 
   const {
-    register,
+    control,
     formState: { errors, isValid },
     handleSubmit,
     reset,
   } = useForm<FormData>({
-    mode: 'onChange',
+    defaultValues: {
+      location: '',
+    },
   })
 
   const onSubmit = handleSubmit((data) => {
-    const isMatches = cities.find((city) => city.name.toLowerCase() === data.location.toLowerCase())
+    if (data.location) {
+      const isMatches = cities.find((city) => city.name.toLowerCase() === data.location.toLowerCase())
 
-    if (!isMatches) {
-      dispatch(searchCity(data.location))
-      reset()
-    } else {
-      toast('This city has already been shown')
+      if (!isMatches) {
+        dispatch(searchCity(data.location))
+        reset()
+      } else {
+        toast('This city has already been shown')
+      }
     }
   })
 
   return (
     <form className="form" onSubmit={onSubmit}>
-      <TextField
-        className="form__input"
-        id="standard-basic"
-        label="Enter location"
-        autoComplete="off"
-        variant="standard"
-        {...register('location', {
-          required: 'Required field',
-          minLength: {
-            value: 1,
-            message: 'Please enter at least one character',
-          },
-        })}
+      <Controller
+        name="location"
+        control={control}
+        render={({ field }) => (
+          <CustomTextField size="small" label="Enter location" autoComplete="off" variant="filled" {...field} />
+        )}
       />
       <div>{errors?.location && <p>{errors?.location?.message || 'Error!'}</p>}</div>
       <Button
-        sx={{
-          ml: '20px',
-        }}
+        sx={{ ml: '20px' }}
         variant="outlined"
+        size="large"
         type="submit"
         disabled={!isValid}
         className="form__button"
+        color={'inherit'}
       >
         Search
       </Button>

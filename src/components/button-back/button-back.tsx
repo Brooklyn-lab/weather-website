@@ -15,11 +15,9 @@ function ButtonBack(): JSX.Element {
   }
 
   return (
-    <div className="button-back">
-      <ArrowBackIcon className="button-back__icon" color="inherit" />
-      <p className="button-back__text" onClick={backHandler}>
-        Go Back
-      </p>
+    <div className="button-back" onClick={backHandler}>
+      <ArrowBackIcon className="button-back__icon" color="inherit" htmlColor={'#fff'} />
+      <p className="button-back__text">Go Back</p>
     </div>
   )
 }
