@@ -1,6 +1,6 @@
 export enum ROUTES {
-  Main = '/',
-  City = '/city/:id',
+  Main = '/weather-website/',
+  City = '/weather-website/city/:id',
 }
 
 export enum HttpCode {
