@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/weather-website/static/css/main.b04308d3.css",
+    "main.js": "/weather-website/static/js/main.b4bc9bbe.js",
+    "static/media/priroda-peizazh.jpg": "/weather-website/static/media/priroda-peizazh.260ae2ec21e85645f759.jpg",
+    "static/media/Montserrat-SemiBold.ttf": "/weather-website/static/media/Montserrat-SemiBold.04af9a9e62bb4c47bd55.ttf",
+    "static/media/Montserrat-Medium.ttf": "/weather-website/static/media/Montserrat-Medium.3a0917345468c959207a.ttf",
+    "static/media/Montserrat-Bold.ttf": "/weather-website/static/media/Montserrat-Bold.63fae500fdcf19ce83d4.ttf",
+    "static/media/Montserrat-Light.ttf": "/weather-website/static/media/Montserrat-Light.f0963fd9968fbd54cc35.ttf",
+    "static/media/Montserrat-Regular.ttf": "/weather-website/static/media/Montserrat-Regular.ac98a5f5ca71180fe293.ttf",
+    "index.html": "/weather-website/index.html",
+    "main.b04308d3.css.map": "/weather-website/static/css/main.b04308d3.css.map",
+    "main.b4bc9bbe.js.map": "/weather-website/static/js/main.b4bc9bbe.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b04308d3.css",
+    "static/js/main.b4bc9bbe.js"
+  ]
+}
