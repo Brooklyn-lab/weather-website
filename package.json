@@ -1,5 +1,6 @@
 {
-  "name": "my-app",
+  "name": "weather-website",
+  "homepage": "https://brooklyn-lab.github.io/weather-website/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
